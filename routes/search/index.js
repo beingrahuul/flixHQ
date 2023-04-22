@@ -4,6 +4,7 @@ import axios from "axios";
 
 // TRENDING
 const search = async (query, page) => {
+	query = query.split(' ').join('-');
   const axiosResponse = await axios.request({
     method: "GET",
     url: `https://flixhq.to/search/${query}?page=${page}`,
@@ -63,7 +64,7 @@ const search = async (query, page) => {
 		"hasNextPage": hasNextpage(),
 		results
 	}
-	console.log(searchData);
+	return searchData;
 };
 
 

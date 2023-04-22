@@ -52,13 +52,14 @@ const movie_info = async (data) => {
     rating,
     duration,
     description,
+    releaseDate,
     country,
     genres,
     production,
     casts
   }
 
-  console.log(tempData);
+  return tempData;
 }
 
 export default movie_info;
