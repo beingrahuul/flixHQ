@@ -27,7 +27,7 @@ const trendingTv = async () => {
     const id = trending[i].children[3].children[1].children[0].attribs.href.slice(4)
     
     const tempData = {
-      "name": name,
+      "title": name,
       "poster": poster,
       "season": season,
       "ep_no": ep_no,

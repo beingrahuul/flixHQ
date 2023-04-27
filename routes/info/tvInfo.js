@@ -77,7 +77,7 @@ const tv_info = async (data) => {
     const info = $('.movie_information > .container > .m_i-detail')
     
     const poster = info[0].children[1].children[1].children[1].attribs.src;
-    const name = info[0].children[3].children[3].children[0].children[0].data;
+    const title = info[0].children[3].children[3].children[0].children[0].data;
     const quality = info[0].children[3].children[5].children[1].children[0].children[0].data;
     const rating = info[0].children[3].children[5].children[3].children[1].data;
     const duration = info[0].children[3].children[5].children[5].children[0].data;
@@ -110,7 +110,7 @@ const tv_info = async (data) => {
     const seasons = await get_seasons(data)
     const tempData = {
         poster,
-        name,
+        title,
         quality,
         rating,
         duration,

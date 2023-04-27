@@ -26,7 +26,7 @@ const trendingMovies = async () => {
     const id = trending[i].children[3].children[1].children[0].attribs.href.slice(7)
     
     const tempData = {
-      "name": name,
+      "title": name,
       "poster": poster,
       "releaseDate": releaseDate,
       "duration": duration,

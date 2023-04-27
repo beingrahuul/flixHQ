@@ -1,7 +1,6 @@
 import cheerio from "cheerio";
 import axios from "axios";
 
-
 // TRENDING
 const search = async (query, page) => {
 	query = query.split(' ').join('-');
@@ -22,7 +21,7 @@ const search = async (query, page) => {
 
   for(let i = 0; i < length; i++){
     const poster = searchResult[i].children[1].children[3].attribs["data-src"]
-    const name = searchResult[i].children[3].children[1].children[0].children[0].data
+    const title = searchResult[i].children[3].children[1].children[0].children[0].data
     const releaseDate = searchResult[i].children[3].children[3].children[1].children[0].data
     const season = searchResult[i].children[3].children[3].children[1].children[0].data
     const duration = searchResult[i].children[3].children[3].children[5].children[0].data
@@ -31,7 +30,7 @@ const search = async (query, page) => {
     const id = searchResult[i].children[3].children[1].children[0].attribs.href.slice(7)
     
     const tempData = {
-      name,
+      title,
       poster,
      	type,
       id
