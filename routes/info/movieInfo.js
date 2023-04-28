@@ -57,7 +57,7 @@ const movie_info = async (data) => {
     genres,
     production,
     casts,
-    "id": data.id
+    "id": data.id.split('-').pop()
   }
 
   return tempData;

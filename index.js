@@ -18,14 +18,16 @@ import comingSoon from "./routes/coming/comingSoon.js";
 const app = express();
 const port = 8080;
 
+const data = await trendingMovies();
+const tvData = await movie_info(data[3]);
 
-const data = await comingSoon();
-const index = 5;
-const data2 = (data[index].type === 'Movie') ? await movie_info(data[index]) : await tv_info(data[index]);
+//watch(tvData.seasons[0].episodes[0].id, data[0].type)
+//console.log(tvData.id);
+watch(tvData.id, data[0].type, "UpCloud")
 
 
 app.get('/', (req, res) => {
-  res.json({"result": data2})
+  res.json({"result": "data2"})
 })
 
 
