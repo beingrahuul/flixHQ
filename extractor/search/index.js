@@ -11,7 +11,6 @@ const search = async (query, page) => {
       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
     },
   });
-
   const html = axiosResponse.data
   const $ = cheerio.load(html)
   const searchResult = $('.film_list  > .film_list-wrap > .flw-item')
@@ -50,14 +49,16 @@ const search = async (query, page) => {
 
   const hasNextpage = () => {
 		let next = false;
-		pageList[0].children.forEach(ele => {
-		if(ele.children[0].attribs.title === "Next"){
-			next = true;
-		}
-		})
+    if(pageList.data() != undefined){
+      pageList[0].children.forEach(ele => {
+        if(ele.children[0].attribs.title === "Next"){
+          next = true;
+        }
+      })
+    }
 		return next
 	}
-	hasNextpage();
+
 
 	const searchData = {
 		"hasNextPage": hasNextpage(),

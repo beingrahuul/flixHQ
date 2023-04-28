@@ -2,8 +2,8 @@ import cheerio from "cheerio";
 import axios from "axios";
 
 // don't return yet
-const movie_info = async (data) => {
-  const url = `https://flixhq.to/${data.type}/${data.id}`;
+const movie_info = async (type, id) => {
+  const url = `https://flixhq.to/${type}/${id}`;
 
   const axiosResponse = await axios.request({
     method: "GET",
@@ -57,7 +57,7 @@ const movie_info = async (data) => {
     genres,
     production,
     casts,
-    "id": data.id.split('-').pop()
+    "id": id.split('-').pop()
   }
 
   return tempData;

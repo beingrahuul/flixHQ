@@ -2,8 +2,9 @@ import cheerio from "cheerio";
 import axios from "axios";
 import cryptoJs from 'crypto-js'
 import key from "../../key.js";
+
 const getServers = async (id, type) => {
-  const url = (type === "Movie") ? `https://flixhq.to/ajax/movie/episodes/${id}` : `https://flixhq.to/ajax/v2/episode/servers/${id}`
+  const url = (type === "movie") ? `https://flixhq.to/ajax/movie/episodes/${id}` : `https://flixhq.to/ajax/v2/episode/servers/${id}`
   const axiosResponse = await axios.request({
     method: "GET",
     url: url,
@@ -18,18 +19,20 @@ const getServers = async (id, type) => {
   $('.nav')[0].children.forEach((ele) => {
     if (ele.attribs != undefined) {
       const tempData = {
-        'id': (type === "Movie") ? ele.children[1].attribs['data-linkid'] : ele.children[1].attribs['data-id'],
+        'id': (type === "movie") ? ele.children[1].attribs['data-linkid'] : ele.children[1].attribs['data-id'],
         title: ele.children[1].attribs['title'].split(" ").pop()
       }
       servers.push(tempData);
     }
   })
 
+
   return servers
 }
 
 const getSources = async (id) => {
   const url = `https://flixhq.to/ajax/sources/${id}`
+
   const axiosResponse = await axios.request({
     method: "GET",
     url: url,
@@ -50,8 +53,7 @@ const getStreamingLinks = async (server) => {
     },
   };
   const { data } = await axios.get(url, options);
-
-  const sources = JSON.parse(cryptoJs.AES.decrypt(data.sources, key).toString(cryptoJs.enc.Utf8));                
+  const sources = JSON.parse(cryptoJs.AES.decrypt(data.sources, key).toString(cryptoJs.enc.Utf8)); 
   const subtitles = data.tracks
   const result = []
 
@@ -73,10 +75,9 @@ const getStreamingLinks = async (server) => {
   }
 
   const videoResult = {
-    result,
+    "sources": result,
     subtitles
   }
-
   return videoResult;
 }
 
@@ -94,10 +95,11 @@ const watch = async (id, type, serverName) => {
       })
     }
   }
-  
+
+  //console.log(servers, streamData);
   const result = await getStreamingLinks(streamData[0])
-  console.log(result);
-  //return result;
+  //console.log(result);
+  return result;
 };
 
 

@@ -31,8 +31,8 @@ const get_episodes = async (id) => {
 
 }  
 
-const get_seasons = async (data) => {
-    const id = data.id.split('-').pop();
+const get_seasons = async (watch_id) => {
+    const id =  watch_id.split('-').pop();
     const url = `https://flixhq.to//ajax/v2/tv/seasons/${id}`;
 
     const axiosResponse = await axios.request({
@@ -61,9 +61,8 @@ const get_seasons = async (data) => {
     return seasons;
 }
 
-const tv_info = async (data) => {
-    const url = `https://flixhq.to/${data.type}/${data.id}`;
-
+const tv_info = async (type, id) => {
+    const url = `https://flixhq.to/${type}/${id}`;
     const axiosResponse = await axios.request({
         method: "GET",
         url: url,
@@ -107,7 +106,7 @@ const tv_info = async (data) => {
     });
 
     const episode_ids = [];
-    const seasons = await get_seasons(data)
+    const seasons = await get_seasons(id)
     const tempData = {
         poster,
         title,
