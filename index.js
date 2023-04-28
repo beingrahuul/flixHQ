@@ -2,17 +2,17 @@ import express from "express";
 import cors from 'cors'
 
 //Trending
-import trendingTv from "./routes/trending/tv.js"
-import trendingMovies from "./routes/trending/movies.js"
+import trendingTv from "./extractor/trending/tv.js"
+import trendingMovies from "./extractor/trending/movies.js"
 
 //Info
-import movie_info from "./routes/info/movieInfo.js";
-import tv_info from "./routes/info/tvInfo.js";
-import search from "./routes/search/index.js";
-import watch from "./routes/watch/watch.js";
-import latestMovies from "./routes/latest/latestMovies.js";
-import latestTv from "./routes/latest/latestTv.js";
-import comingSoon from "./routes/coming/comingSoon.js";
+import movie_info from "./extractor/info/movieInfo.js";
+import tv_info from "./extractor/info/tvInfo.js";
+import search from "./extractor/search/index.js";
+import watch from "./extractor/watch/watch.js";
+import latestMovies from "./extractor/latest/latestMovies.js";
+import latestTv from "./extractor/latest/latestTv.js";
+import comingSoon from "./extractor/coming/comingSoon.js";
 
 //Server
 const app = express();
