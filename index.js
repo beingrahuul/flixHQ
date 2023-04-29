@@ -5,6 +5,9 @@ import cors from 'cors'
 import search from "./routes/search/searchRoute.js"
 import info from "./routes/info/infoRoute.js"
 import watch from "./routes/watch/watchRoute.js"
+import trending from "./routes/lists/trendingRoutes.js"
+import latest from "./routes/lists/latestRoutes.js"
+import comingSoon from "./routes/lists/soonRoutes.js"
 
 //Server
 const app = express();
@@ -16,6 +19,9 @@ app.use(express.json())
 app.use('/search', search);
 app.use('/info', info);
 app.use('/watch', watch);
+app.use('/trending', trending);
+app.use('/latest', latest);
+app.use('/comingsoon', comingSoon);
 
 
 app.get('/', (req, res) => {
